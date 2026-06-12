@@ -1029,6 +1029,363 @@
     }
     .form-success-msg { color: var(--slate); font-size: 0.9rem; }
 
+    /* ─── To-Do List Application Styles ────────────────────── */
+    .todo-app-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-top: var(--space-sm);
+    }
+    
+    .todo-header-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(240,235,225,0.08);
+      padding-bottom: var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .todo-header-panel {
+        flex-direction: row;
+        align-items: flex-end;
+      }
+    }
+    
+    .todo-stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .todo-stat-card {
+      background: var(--navy2);
+      border: 1px solid rgba(240,235,225,0.08);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.5rem;
+      min-width: 100px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+    .todo-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .todo-stat-lbl {
+      font-size: 0.7rem;
+      color: var(--slate);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+    
+    .todo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .todo-grid {
+        grid-template-columns: 1.1fr 1.8fr;
+      }
+    }
+    
+    .todo-form-panel {
+      background: var(--navy2);
+      border: 1px solid rgba(240,235,225,0.08);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      position: sticky;
+      top: 100px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    
+    .todo-panel-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+      color: var(--cream);
+    }
+    
+    .todo-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: var(--space-md);
+    }
+    .todo-search-box {
+      width: 100%;
+    }
+    .todo-filters-sort {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .todo-filters {
+      display: flex;
+      gap: 0.25rem;
+    }
+    .todo-filters .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(240,235,225,0.15);
+      color: var(--slate);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .todo-filters .filter-btn:hover,
+    .todo-filters .filter-btn.active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--navy);
+      font-weight: 600;
+    }
+    
+    .todo-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    /* Task Card Styles */
+    .todo-item {
+      background: var(--navy2);
+      border: 1px solid rgba(240,235,225,0.08);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      position: relative;
+      transition: all var(--transition);
+      animation: taskFadeIn var(--transition) forwards;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .todo-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      border-color: rgba(245,166,35,0.2);
+    }
+    
+    @keyframes taskFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .todo-item.deleting {
+      animation: taskFadeOut var(--transition) forwards;
+    }
+    @keyframes taskFadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+    
+    /* Custom Circular Checkbox */
+    .todo-checkbox-wrapper {
+      position: relative;
+      width: 22px;
+      height: 22px;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+    .todo-cb-custom {
+      position: absolute;
+      top: 0; left: 0;
+      width: 22px; height: 22px;
+      border: 2px solid var(--slate);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+    .todo-cb-custom::after {
+      content: '';
+      width: 6px; height: 10px;
+      border: solid var(--navy);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-1px, -1px);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .todo-cb-input {
+      position: absolute;
+      opacity: 0;
+      width: 100%; height: 100%;
+      cursor: pointer;
+      z-index: 1;
+      margin: 0;
+    }
+    .todo-cb-input:checked + .todo-cb-custom {
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+    .todo-cb-input:checked + .todo-cb-custom::after {
+      opacity: 1;
+    }
+    .todo-cb-input:focus-visible + .todo-cb-custom {
+      outline: 3px solid var(--amber);
+      outline-offset: 3px;
+    }
+    
+    /* Task Content */
+    .todo-item-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 0;
+    }
+    .todo-item-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--cream);
+      transition: color var(--transition), text-decoration var(--transition);
+      word-break: break-word;
+    }
+    .todo-item-desc {
+      font-size: 0.8rem;
+      color: var(--slate);
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .todo-item.completed .todo-item-title {
+      text-decoration: line-through;
+      color: var(--slate);
+      opacity: 0.5;
+    }
+    .todo-item.completed .todo-item-desc {
+      opacity: 0.3;
+    }
+    
+    /* Meta tags: priority and due date */
+    .todo-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .todo-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .todo-badge-prio-low {
+      background: rgba(124, 152, 133, 0.15);
+      color: var(--sage);
+    }
+    .todo-badge-prio-medium {
+      background: rgba(245, 166, 35, 0.15);
+      color: var(--amber);
+    }
+    .todo-badge-prio-high {
+      background: rgba(224, 92, 92, 0.15);
+      color: #e05c5c;
+    }
+    .todo-badge-due {
+      background: rgba(240,235,225,0.04);
+      color: var(--slate);
+      border: 1px solid rgba(240,235,225,0.08);
+    }
+    .todo-badge-due.overdue {
+      background: rgba(224, 92, 92, 0.1);
+      color: #e05c5c;
+      border-color: rgba(224, 92, 92, 0.2);
+    }
+    
+    /* Actions buttons */
+    .todo-item-actions {
+      display: flex;
+      gap: 0.25rem;
+      align-self: flex-start;
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+    }
+    .todo-btn-icon {
+      background: transparent;
+      border: none;
+      color: var(--slate);
+      width: 28px; height: 28px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+    }
+    .todo-btn-icon:hover {
+      background: rgba(240,235,225,0.08);
+      color: var(--cream);
+    }
+    .todo-btn-icon.delete:hover {
+      background: rgba(224, 92, 92, 0.1);
+      color: #e05c5c;
+    }
+    
+    /* Edit Mode */
+    .todo-edit-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    
+    /* Empty State styles */
+    .todo-empty-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+      background: var(--navy2);
+      border: 1px dashed rgba(240,235,225,0.12);
+      border-radius: var(--radius-lg);
+    }
+    .todo-empty-icon {
+      font-size: 2.5rem;
+      color: var(--sage);
+      background: rgba(124,152,133,0.1);
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .todo-empty-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+    .todo-empty-desc {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
     /* ─── Footer ────────────────────────────────────────────── */
     .site-footer {
       padding: var(--space-md);
@@ -1096,6 +1453,7 @@
         <li><a href="#" class="nav-link" data-page="home" aria-current="page">Home</a></li>
         <li><a href="#" class="nav-link" data-page="about">About</a></li>
         <li><a href="#" class="nav-link" data-page="work">Work</a></li>
+        <li><a href="#" class="nav-link" data-page="todo">To-Do List</a></li>
         <li><a href="#" class="nav-link cta" data-page="contact">Let's Talk</a></li>
       </ul>
     </nav>
@@ -1348,6 +1706,114 @@
       </div>
     </div>
 
+    <div id="todo" class="page" role="region" aria-label="To-Do List Application" tabindex="-1">
+      <div class="container">
+        <div class="todo-app-wrapper">
+          <div class="todo-header-panel">
+            <div>
+              <p class="section-label">Task Manager</p>
+              <h1 class="section-title">Stay Organized</h1>
+            </div>
+            
+            <div class="todo-stats">
+              <div class="todo-stat-card">
+                <span class="todo-stat-num" id="todo-stats-active">0</span>
+                <span class="todo-stat-lbl">Active Tasks</span>
+              </div>
+              <div class="todo-stat-card">
+                <span class="todo-stat-num" id="todo-stats-completed">0</span>
+                <span class="todo-stat-lbl">Completed</span>
+              </div>
+              <div class="todo-stat-card">
+                <span class="todo-stat-num" id="todo-stats-pct">0%</span>
+                <span class="todo-stat-lbl">Done</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="todo-grid">
+            <aside class="todo-form-panel">
+              <form id="todo-form" class="todo-form" novalidate>
+                <h2 class="todo-panel-title">Create New Task</h2>
+                
+                <div class="form-group">
+                  <label class="form-label" for="todo-title">Task Title<span class="required" style="color:var(--amber);">*</span></label>
+                  <input type="text" id="todo-title" class="form-control" placeholder="What needs to be done?" required />
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="todo-desc">Description</label>
+                  <textarea id="todo-desc" class="form-control" rows="3" placeholder="Add some details..."></textarea>
+                </div>
+                
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 0.75rem; display: grid;">
+                  <div class="form-group">
+                    <label class="form-label" for="todo-priority">Priority</label>
+                    <select id="todo-priority" class="form-control" style="background: rgba(240,235,225,0.05); height: auto;">
+                      <option value="low">Low</option>
+                      <option value="medium" selected>Medium</option>
+                      <option value="high">High</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label" for="todo-due">Due Date</label>
+                    <input type="date" id="todo-due" class="form-control" style="background: rgba(240,235,225,0.05); line-height: normal;" />
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" id="todo-submit-btn">
+                  Add Task
+                </button>
+              </form>
+            </aside>
+
+            <section class="todo-list-panel" aria-labelledby="todo-list-heading">
+              <h2 id="todo-list-heading" class="sr-only">Tasks</h2>
+              
+              <div class="todo-controls">
+                <div class="todo-search-box">
+                  <input type="text" id="todo-search" class="form-control" placeholder="Search tasks..." aria-label="Search tasks" />
+                </div>
+                
+                <div class="todo-filters-sort">
+                  <div class="todo-filters" role="group" aria-label="Filter tasks">
+                    <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                    <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
+                    <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+                  </div>
+                  
+                  <div class="todo-sort">
+                    <label for="todo-sort-select" class="sr-only">Sort by</label>
+                    <select id="todo-sort-select" class="form-control" style="padding: 0.4rem 1.5rem; font-size: 0.8rem; border-radius: 100px; background: rgba(240,235,225,0.05); width: auto;">
+                      <option value="createdAt-desc">Newest First</option>
+                      <option value="createdAt-asc">Oldest First</option>
+                      <option value="dueDate-asc">Due Date (Asc)</option>
+                      <option value="priority-desc">Priority (High-Low)</option>
+                    </select>
+                  </div>
+                  
+                  <button type="button" class="btn btn-outline" id="todo-clear-completed" style="padding: 0.4rem 1.4rem; font-size: 0.8rem; border-radius: 100px; display: none;">
+                    Clear Completed
+                  </button>
+                </div>
+              </div>
+
+              <div class="todo-list" id="todo-list" role="list">
+                <!-- Tasks will be rendered here dynamically -->
+              </div>
+              
+              <div class="todo-empty-state" id="todo-empty-state" style="display: flex;">
+                <span class="todo-empty-icon" aria-hidden="true">✓</span>
+                <h3 class="todo-empty-title">All caught up!</h3>
+                <p class="todo-empty-desc">Create a new task to get started.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="contact" class="page" role="region" aria-label="Contact Raj Kumar Prasad" tabindex="-1">
       <div class="contact-layout">
         <aside aria-labelledby="contact-heading">
@@ -1476,6 +1942,7 @@
     </nav>
   </footer>
 
+  <script src="backend.js" defer></script>
   <script>
     const pages = document.querySelectorAll('.page');
     const navLinks = document.querySelectorAll('[data-page]');
@@ -1492,7 +1959,7 @@
         if (link.dataset.page === pageId) link.setAttribute('aria-current', 'page');
         else link.removeAttribute('aria-current');
       });
-      const pageNames = { home: 'Home page', about: 'About page', work: 'Work and Projects page', contact: 'Contact page' };
+      const pageNames = { home: 'Home page', about: 'About page', work: 'Work and Projects page', todo: 'To-Do List page', contact: 'Contact page' };
       liveRegion.textContent = `Mapsd to ${pageNames[pageId] || pageId}`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
       document.getElementById('side-dots-home').style.display = pageId === 'home' ? 'flex' : 'none';

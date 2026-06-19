@@ -1452,7 +1452,7 @@
       <ul class="nav-list" id="nav-menu" role="list">
         <li><a href="#" class="nav-link" data-page="home" aria-current="page">Home</a></li>
         <li><a href="#" class="nav-link" data-page="about">About</a></li>
-        <li><a href="#" class="nav-link" data-page="work">Work</a></li>
+        <li><a href="#" class="nav-link" data-page="work">Projects</a></li>
         <li><a href="#" class="nav-link" data-page="todo">To-Do List</a></li>
         <li><a href="#" class="nav-link cta" data-page="contact">Let's Talk</a></li>
       </ul>
@@ -1479,7 +1479,7 @@
           <p class="hero-role">Designer &amp; Engineer</p>
           <p class="hero-desc">I craft accessible, performant web experiences that live at the intersection of thoughtful design and clean engineering.</p>
           <div class="hero-actions">
-            <a href="#" class="btn btn-primary" data-page="work" aria-label="View my portfolio projects">View Work</a>
+            <a href="#" class="btn btn-primary" data-page="work" aria-label="View my portfolio projects">View Projects</a>
             <a href="#" class="btn btn-outline" data-page="contact" aria-label="Get in touch with Raj Kumar Prasad">Get in Touch</a>
           </div>
         </div>
@@ -1507,33 +1507,33 @@
 
       <section id="home-work-section" class="home-work" aria-labelledby="featured-heading">
         <p class="section-label">Selected Projects</p>
-        <h2 class="section-title" id="featured-heading">Work I'm<br>proud of.</h2>
+        <h2 class="section-title" id="featured-heading">Deployed ML<br>Projects.</h2>
         <div class="work-grid" role="list">
           <article class="work-card" role="listitem">
-            <div class="work-card-thumb c1" aria-hidden="true">💳</div>
+            <div class="work-card-thumb c1" aria-hidden="true" style="background: linear-gradient(135deg, #f5af19, #f12711);">🔥</div>
             <div class="work-card-body">
-              <p class="work-card-tag">Fintech · Web App</p>
-              <h3 class="work-card-title">Lumina Finance</h3>
-              <p class="work-card-desc">A real-time personal finance dashboard with AI-powered spend categorization and accessibility-first design.</p>
-              <a href="#" class="work-card-link" data-page="work" aria-label="View Lumina Finance case study">Case Study</a>
+              <p class="work-card-tag">Machine Learning · Streamlit</p>
+              <h3 class="work-card-title">Calories Burn Predictor</h3>
+              <p class="work-card-desc">Estimates energy expenditure during workouts using key physical and cardiovascular metrics.</p>
+              <a href="./Calories_Predict/calories_app.py" class="work-card-link" target="_blank" aria-label="View Calories Burn Predictor App">Open App</a>
             </div>
           </article>
           <article class="work-card" role="listitem">
-            <div class="work-card-thumb c2" aria-hidden="true">🔮</div>
+            <div class="work-card-thumb c2" aria-hidden="true" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">🏠</div>
             <div class="work-card-body">
-              <p class="work-card-tag">Design System</p>
-              <h3 class="work-card-title">Orb Design System</h3>
-              <p class="work-card-desc">A WCAG AA-compliant component library serving 4 product teams, with Storybook and Figma integration.</p>
-              <a href="#" class="work-card-link" data-page="work" aria-label="View Orb Design System case study">Case Study</a>
+              <p class="work-card-tag">Machine Learning · Streamlit</p>
+              <h3 class="work-card-title">Delhi House Price Predictor</h3>
+              <p class="work-card-desc">Predicts residential real estate prices in Delhi using area, BHK, location, and furnishing status.</p>
+              <a href="./House_Price/streamlit_app.py" class="work-card-link" target="_blank" aria-label="View Delhi House Price Predictor App">Open App</a>
             </div>
           </article>
           <article class="work-card" role="listitem">
-            <div class="work-card-thumb c3" aria-hidden="true">🌿</div>
+            <div class="work-card-thumb c3" aria-hidden="true" style="background: linear-gradient(135deg, #ff0844, #ffb199);">❤️</div>
             <div class="work-card-body">
-              <p class="work-card-tag">E-commerce · Fullstack</p>
-              <h3 class="work-card-title">Verdant Market</h3>
-              <p class="work-card-desc">A sustainable goods marketplace with headless Shopify, Next.js, and edge-deployed recommendation engine.</p>
-              <a href="#" class="work-card-link" data-page="work" aria-label="View Verdant Market case study">Case Study</a>
+              <p class="work-card-tag">Machine Learning · Streamlit</p>
+              <h3 class="work-card-title">Heart Disease Detection</h3>
+              <p class="work-card-desc">Classification model detecting heart disease risks from physiological inputs like age and cholesterol levels.</p>
+              <a href="./heart/streamlit_app.py" class="work-card-link" target="_blank" aria-label="View Heart Disease Detection App">Open App</a>
             </div>
           </article>
         </div>
@@ -1612,93 +1612,55 @@
       <div class="work-page-inner">
         <header class="work-page-header">
           <p class="section-label">Portfolio</p>
-          <h1 class="section-title" id="work-heading">Projects &amp;<br>Case Studies</h1>
-          <p style="color:var(--slate);font-size:0.95rem;line-height:1.7;">A selection of work across fintech, e-commerce, and developer tooling.</p>
+          <h1 class="section-title" id="work-heading">Deployed ML<br>Projects</h1>
+          <p style="color:var(--slate);font-size:0.95rem;line-height:1.7;">A selection of machine learning classification and regression models built using Python and Streamlit.</p>
         </header>
 
         <div class="work-filter" role="group" aria-label="Filter projects by category">
-          <button class="filter-btn" aria-pressed="true">All</button>
-          <button class="filter-btn" aria-pressed="false">Web App</button>
-          <button class="filter-btn" aria-pressed="false">Design System</button>
-          <button class="filter-btn" aria-pressed="false">E-commerce</button>
-          <button class="filter-btn" aria-pressed="false">Open Source</button>
+          <button class="filter-btn" aria-pressed="true" data-filter="all">All</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="regression">Regression</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="classification">Classification</button>
         </div>
 
         <div class="work-full-grid" id="projects-grid" role="list" aria-label="Project cards" aria-live="polite">
-          <article class="project-card" role="listitem">
-            <div class="project-thumb p1" role="img" aria-label="Lumina Finance dashboard"><span aria-hidden="true">💳</span></div>
+          <article class="project-card" role="listitem" data-category="regression">
+            <div class="project-thumb p1" role="img" aria-label="Calories Burn Predictor App" style="background: linear-gradient(135deg, #f5af19, #f12711);"><span aria-hidden="true">🔥</span></div>
             <div class="project-body">
-              <ul class="project-tags" role="list"><li class="project-tag">Fintech</li><li class="project-tag">React</li><li class="project-tag">Node.js</li></ul>
-              <h2 class="project-title">Lumina Finance</h2>
-              <p class="project-desc">Real-time personal finance dashboard with AI-powered spend categorization, accessible data visualizations, and multi-currency support.</p>
-              <nav class="project-links" aria-label="Lumina Finance links">
-                <a href="#" class="project-link live" aria-label="View Lumina Finance live demo">Live Demo ↗</a>
-                <a href="#" class="project-link code" aria-label="Lumina Finance on GitHub">GitHub</a>
+              <ul class="project-tags" role="list"><li class="project-tag">Regression</li><li class="project-tag">Random Forest</li><li class="project-tag">Streamlit</li></ul>
+              <h2 class="project-title">Calories Burn Predictor</h2>
+              <p class="project-desc">A regression model predicting calories burned during workouts using user biometric statistics and real-time exercise intensity metrics.</p>
+              <nav class="project-links" aria-label="Calories Burn Predictor links">
+                <a href="./Calories_Predict/calories_app.py" class="project-link live" target="_blank" aria-label="Open Calories Burn Predictor App">🤖 Streamlit App</a>
+                <a href="./Calories_Predict/" class="project-link code" target="_blank" aria-label="Open Calories Predict Folder">📂 Folder</a>
+                <a href="./Calories_Predict/Calories_Project.ipynb" class="project-link code" target="_blank" aria-label="Open Calories Predict Notebook">📓 Notebook</a>
               </nav>
             </div>
           </article>
 
-          <article class="project-card" role="listitem">
-            <div class="project-thumb p2" role="img" aria-label="Orb Design System preview"><span aria-hidden="true">🔮</span></div>
+          <article class="project-card" role="listitem" data-category="regression">
+            <div class="project-thumb p2" role="img" aria-label="Delhi House Price Predictor App" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"><span aria-hidden="true">🏠</span></div>
             <div class="project-body">
-              <ul class="project-tags" role="list"><li class="project-tag">Design System</li><li class="project-tag">TypeScript</li><li class="project-tag">Storybook</li></ul>
-              <h2 class="project-title">Orb Design System</h2>
-              <p class="project-desc">WCAG AA-compliant component library with 60+ components, dark mode, and full Figma token sync across 4 product teams.</p>
-              <nav class="project-links" aria-label="Orb Design System links">
-                <a href="#" class="project-link live" aria-label="View Orb docs">Docs ↗</a>
-                <a href="#" class="project-link code" aria-label="Orb on GitHub">GitHub</a>
+              <ul class="project-tags" role="list"><li class="project-tag">Regression</li><li class="project-tag">Linear Regression</li><li class="project-tag">Streamlit</li></ul>
+              <h2 class="project-title">Delhi House Price Predictor</h2>
+              <p class="project-desc">A price estimation engine mapping and predicting residential housing market values in Delhi using area size, location, and furnishing state.</p>
+              <nav class="project-links" aria-label="Delhi House Price Predictor links">
+                <a href="./House_Price/streamlit_app.py" class="project-link live" target="_blank" aria-label="Open Delhi House Price Predictor App">🤖 Streamlit App</a>
+                <a href="./House_Price/" class="project-link code" target="_blank" aria-label="Open House Price Folder">📂 Folder</a>
+                <a href="./House_Price/Delhi House Price Prediction.ipynb" class="project-link code" target="_blank" aria-label="Open Delhi House Price Notebook">📓 Notebook</a>
               </nav>
             </div>
           </article>
 
-          <article class="project-card" role="listitem">
-            <div class="project-thumb p3" role="img" aria-label="Verdant Market storefront"><span aria-hidden="true">🌿</span></div>
+          <article class="project-card" role="listitem" data-category="classification">
+            <div class="project-thumb p3" role="img" aria-label="Heart Disease Detection App" style="background: linear-gradient(135deg, #ff0844, #ffb199);"><span aria-hidden="true">❤️</span></div>
             <div class="project-body">
-              <ul class="project-tags" role="list"><li class="project-tag">E-commerce</li><li class="project-tag">Next.js</li><li class="project-tag">Shopify</li></ul>
-              <h2 class="project-title">Verdant Market</h2>
-              <p class="project-desc">Sustainable goods marketplace with headless Shopify, edge-deployed AI recommendations, and sub-1s TTFB globally.</p>
-              <nav class="project-links" aria-label="Verdant Market links">
-                <a href="#" class="project-link live" aria-label="Visit Verdant Market">Visit ↗</a>
-                <a href="#" class="project-link code" aria-label="Verdant Market case study">Case Study</a>
-              </nav>
-            </div>
-          </article>
-
-          <article class="project-card" role="listitem">
-            <div class="project-thumb p4" role="img" aria-label="Ember CLI terminal preview"><span aria-hidden="true">🔥</span></div>
-            <div class="project-body">
-              <ul class="project-tags" role="list"><li class="project-tag">Open Source</li><li class="project-tag">CLI</li><li class="project-tag">Node.js</li></ul>
-              <h2 class="project-title">Ember CLI</h2>
-              <p class="project-desc">Open-source scaffolding tool for accessible React apps that auto-generates semantic HTML, ARIA labels, and skip-navigation patterns.</p>
-              <nav class="project-links" aria-label="Ember CLI links">
-                <a href="#" class="project-link live" aria-label="View on npm">npm ↗</a>
-                <a href="#" class="project-link code" aria-label="Ember CLI on GitHub">GitHub</a>
-              </nav>
-            </div>
-          </article>
-
-          <article class="project-card" role="listitem">
-            <div class="project-thumb p5" role="img" aria-label="Pulse Analytics dashboard"><span aria-hidden="true">📊</span></div>
-            <div class="project-body">
-              <ul class="project-tags" role="list"><li class="project-tag">Web App</li><li class="project-tag">D3.js</li><li class="project-tag">PostgreSQL</li></ul>
-              <h2 class="project-title">Pulse Analytics</h2>
-              <p class="project-desc">Self-hosted web analytics platform — no cookies, GDPR-compliant by default, with accessible chart components.</p>
-              <nav class="project-links" aria-label="Pulse Analytics links">
-                <a href="#" class="project-link live" aria-label="View Pulse Analytics demo">Demo ↗</a>
-                <a href="#" class="project-link code" aria-label="Pulse Analytics on GitHub">GitHub</a>
-              </nav>
-            </div>
-          </article>
-
-          <article class="project-card" role="listitem">
-            <div class="project-thumb p6" role="img" aria-label="Arca booking platform preview"><span aria-hidden="true">🏔️</span></div>
-            <div class="project-body">
-              <ul class="project-tags" role="list"><li class="project-tag">SaaS</li><li class="project-tag">React</li><li class="project-tag">Stripe</li></ul>
-              <h2 class="project-title">Arca Booking</h2>
-              <p class="project-desc">Adventure travel booking platform with real-time availability, group coordination tools, and fully keyboard-navigable checkout.</p>
-              <nav class="project-links" aria-label="Arca Booking links">
-                <a href="#" class="project-link live" aria-label="Visit Arca Booking">Visit ↗</a>
-                <a href="#" class="project-link code" aria-label="Arca Booking case study">Case Study</a>
+              <ul class="project-tags" role="list"><li class="project-tag">Classification</li><li class="project-tag">Machine Learning</li><li class="project-tag">Streamlit</li></ul>
+              <h2 class="project-title">Heart Disease Detection</h2>
+              <p class="project-desc">A binary classification application indicating heart disease presence through the analysis of physiological factors like age and cholesterol.</p>
+              <nav class="project-links" aria-label="Heart Disease Detection links">
+                <a href="./heart/streamlit_app.py" class="project-link live" target="_blank" aria-label="Open Heart Disease Detection App">🤖 Streamlit App</a>
+                <a href="./heart/" class="project-link code" target="_blank" aria-label="Open Heart Folder">📂 Folder</a>
+                <a href="./heart/Heart_disease.ipynb" class="project-link code" target="_blank" aria-label="Open Heart Disease Notebook">📓 Notebook</a>
               </nav>
             </div>
           </article>
@@ -1936,7 +1898,7 @@
       <ul class="footer-links" role="list">
         <li><a href="#" data-page="home">Home</a></li>
         <li><a href="#" data-page="about">About</a></li>
-        <li><a href="#" data-page="work">Work</a></li>
+        <li><a href="#" data-page="work">Projects</a></li>
         <li><a href="#" data-page="contact">Contact</a></li>
       </ul>
     </nav>
@@ -1959,7 +1921,7 @@
         if (link.dataset.page === pageId) link.setAttribute('aria-current', 'page');
         else link.removeAttribute('aria-current');
       });
-      const pageNames = { home: 'Home page', about: 'About page', work: 'Work and Projects page', todo: 'To-Do List page', contact: 'Contact page' };
+      const pageNames = { home: 'Home page', about: 'About page', work: 'Projects page', todo: 'To-Do List page', contact: 'Contact page' };
       liveRegion.textContent = `Mapsd to ${pageNames[pageId] || pageId}`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
       document.getElementById('side-dots-home').style.display = pageId === 'home' ? 'flex' : 'none';
@@ -1994,6 +1956,18 @@
         document.querySelectorAll('.filter-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
         btn.setAttribute('aria-pressed', 'true');
         liveRegion.textContent = `Filtered by: ${btn.textContent}`;
+        
+        const filter = btn.dataset.filter;
+        if (!filter) return;
+        
+        const projectCards = document.querySelectorAll('#projects-grid .project-card');
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       });
     });
 

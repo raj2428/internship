@@ -1018,7 +1018,7 @@
       <ul class="nav-list" id="nav-menu" role="list">
         <li><a href="#" class="nav-link" data-page="home" aria-current="page">Home</a></li>
         <li><a href="#" class="nav-link" data-page="about">About</a></li>
-        <li><a href="#" class="nav-link" data-page="work">Work</a></li>
+        <li><a href="#" class="nav-link" data-page="work">Projects</a></li>
         <li><a href="#" class="nav-link" data-page="todo">To-Do List</a></li>
         <li><a href="#" class="nav-link cta" data-page="contact">Let's Talk</a></li>
       </ul>
@@ -1040,7 +1040,7 @@
             <h1 class="hero-name" id="hero-heading">Raj Kumar<br><span class="highlight" aria-label="Prasad">Prasad</span></h1>
             <p class="hero-desc">I craft accessible, performant web experiences that live at the intersection of thoughtful design and clean engineering.</p>
             <div class="hero-actions">
-              <a href="#" class="btn btn-primary" data-page="work" aria-label="View my portfolio projects">View Work</a>
+              <a href="#" class="btn btn-primary" data-page="work" aria-label="View my portfolio projects">View Projects</a>
               <a href="#" class="btn btn-outline" data-page="contact" aria-label="Get in touch with Raj Kumar Prasad">Get in Touch</a>
             </div>
           </div>
@@ -1103,42 +1103,48 @@
       <div class="container">
         <header>
           <p class="section-label">Portfolio</p>
-          <h1 class="section-title" id="work-heading">Projects & Case Studies</h1>
+          <h1 class="section-title" id="work-heading">Deployed ML Projects</h1>
         </header>
         
         <div class="work-full-grid" role="list">
           <article class="project-card" role="listitem">
-            <div class="project-thumb"><span aria-hidden="true">💳</span></div>
+            <div class="project-thumb" style="background: linear-gradient(135deg, #f5af19, #f12711); color: white;"><span aria-hidden="true">🔥</span></div>
             <div class="project-body">
-              <ul class="project-tags"><li class="project-tag">Fintech</li><li class="project-tag">React</li></ul>
-              <h2 class="project-title">Lumina Finance</h2>
-              <p class="project-desc">Real-time personal finance dashboard with AI-powered categorization.</p>
-              <div class="project-links">
-                <a href="#" class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.8rem;">Live Demo ↗</a>
+              <ul class="project-tags"><li class="project-tag">Regression</li><li class="project-tag">Streamlit</li></ul>
+              <h2 class="project-title">Calories Burn Predictor</h2>
+              <p class="project-desc">A regression model predicting calories burned during workouts using user biometric statistics and real-time exercise intensity metrics.</p>
+              <div class="project-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="./Calories_Predict/calories_app.py" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Streamlit App ↗</a>
+                <a href="./Calories_Predict/" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Folder ↗</a>
+                <a href="./Calories_Predict/Calories_Project.ipynb" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Notebook ↗</a>
               </div>
             </div>
           </article>
           
           <article class="project-card" role="listitem">
-            <div class="project-thumb"><span aria-hidden="true">🔮</span></div>
+            <div class="project-thumb" style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white;"><span aria-hidden="true">🏠</span></div>
             <div class="project-body">
-              <ul class="project-tags"><li class="project-tag">Design System</li><li class="project-tag">TypeScript</li></ul>
-              <h2 class="project-title">Orb Design System</h2>
-              <p class="project-desc">WCAG AA-compliant component library synced with Figma.</p>
-              <div class="project-links">
-                <a href="#" class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.8rem;">View Docs ↗</a>
+              <ul class="project-tags"><li class="project-tag">Regression</li><li class="project-tag">Streamlit</li></ul>
+              <h2 class="project-title">Delhi House Price Predictor</h2>
+              <p class="project-desc">A price estimation engine mapping and predicting residential housing market values in Delhi using area size, location, and furnishing state.</p>
+              <div class="project-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="./House_Price/streamlit_app.py" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Streamlit App ↗</a>
+                <a href="./House_Price/" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Folder ↗</a>
+                <a href="./House_Price/Delhi House Price Prediction.ipynb" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Notebook ↗</a>
               </div>
             </div>
           </article>
 
           <article class="project-card" role="listitem">
-            <div class="project-thumb"><span aria-hidden="true">🌿</span></div>
+            <div class="project-thumb" style="background: linear-gradient(135deg, #ff0844, #ffb199); color: white;"><span aria-hidden="true">❤️</span></div>
             <div class="project-body">
-              <ul class="project-tags"><li class="project-tag">E-commerce</li><li class="project-tag">Next.js</li></ul>
-              <h2 class="project-title">Verdant Market</h2>
-              <p class="project-desc">Sustainable goods marketplace built on headless Shopify.</p>
-              <div class="project-links">
-                <a href="#" class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.8rem;">Visit ↗</a>
+              <ul class="project-tags"><li class="project-tag">Classification</li><li class="project-tag">Streamlit</li></ul>
+              <h2 class="project-title">Heart Disease Detection</h2>
+              <p class="project-desc">A binary classification application indicating heart disease presence through the analysis of physiological factors like age and cholesterol.</p>
+              <div class="project-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="./heart/streamlit_app.py" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Streamlit App ↗</a>
+                <a href="./heart/" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Folder ↗</a>
+                <a href="./heart/Heart_disease.ipynb" class="btn btn-outline" target="_blank" style="padding:0.5rem 1rem; font-size:0.8rem;">Notebook ↗</a>
               </div>
             </div>
           </article>

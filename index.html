@@ -592,8 +592,6 @@
     }
     .about-badge-text { font-size: 0.8rem; color: var(--cream); font-weight: 500; }
 
-    .about-text-col {}
-
     .about-intro {
       font-family: var(--font-display);
       font-size: clamp(1.5rem, 3vw, 2.2rem);
@@ -1620,6 +1618,7 @@
           <button class="filter-btn" aria-pressed="true" data-filter="all">All</button>
           <button class="filter-btn" aria-pressed="false" data-filter="regression">Regression</button>
           <button class="filter-btn" aria-pressed="false" data-filter="classification">Classification</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="ecommerce">E-Commerce</button>
         </div>
 
         <div class="work-full-grid" id="projects-grid" role="list" aria-label="Project cards" aria-live="polite">
@@ -1661,6 +1660,19 @@
                 <a href="http://localhost:8503" class="project-link live" target="_blank" aria-label="Open Heart Disease Detection App">🤖 View App</a>
                 <a href="./heart/" class="project-link code" target="_blank" aria-label="Open Heart Folder">📂 Folder</a>
                 <a href="./heart/Heart_disease.ipynb" class="project-link code" target="_blank" aria-label="Open Heart Disease Notebook">📓 Notebook</a>
+              </nav>
+            </div>
+          </article>
+
+          <article class="project-card" role="listitem" data-category="ecommerce">
+            <div class="project-thumb" role="img" aria-label="NexusMarket E-Commerce App" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));"><span aria-hidden="true">⚡</span></div>
+            <div class="project-body">
+              <ul class="project-tags" role="list"><li class="project-tag">E-Commerce</li><li class="project-tag">Single Page App</li><li class="project-tag">Vanilla JS</li></ul>
+              <h2 class="project-title">NexusMarket E-Commerce</h2>
+              <p class="project-desc">A premium, fully featured hardware product catalog. Includes instant category filters, price sliders, a local storage cart, and multi-step payment validation.</p>
+              <nav class="project-links" aria-label="NexusMarket E-Commerce links">
+                <a href="./ecommerce.html" class="project-link live" target="_blank" aria-label="Open NexusMarket E-Commerce App">🤖 View App</a>
+                <a href="./nexus-market/" class="project-link code" target="_blank" aria-label="Open NexusMarket Folder">📂 Folder</a>
               </nav>
             </div>
           </article>

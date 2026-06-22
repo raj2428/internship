@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>NexusMarket | Next-Generation Hardware & Tech Gear</title>
+  <meta name="description" content="Discover NexusMarket - A premium online catalog for audiophile headphones, custom mechanical keyboards, high-performance wearables, and next-generation smart home gadgets." />
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables & Design Tokens ───────────────────── */
+    :root {
+      --bg-primary: hsl(222, 25%, 6%);
+      --bg-secondary: hsl(222, 21%, 9%);
+      --bg-tertiary: hsl(222, 18%, 13%);
+      --text-primary: hsl(210, 20%, 98%);
+      --text-secondary: hsl(210, 14%, 75%);
+      --text-muted: hsl(210, 10%, 55%);
+
+      --accent-cyan: hsl(180, 100%, 48%);
+      --accent-purple: hsl(265, 90%, 62%);
+      --accent-amber: hsl(40, 95%, 55%);
+      --accent-rose: hsl(342, 85%, 55%);
+
+      --border-color: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      
+      --glass-bg: rgba(9, 13, 24, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --glass-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+      --glass-blur: 16px;
+
+      --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+
+      --radius-xs: 4px;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── Reset & Base Styles ─────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    :focus-visible {
+      outline: 2px solid var(--accent-cyan);
+      outline-offset: 3px;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-full);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.015em;
+    }
+
+    /* ─── Page Framework Layout ───────────────────────────── */
+    .glass-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 72px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border-bottom: 1px solid var(--glass-border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      transition: var(--transition-smooth);
+    }
+    .glass-nav.scrolled {
+      height: 64px;
+      background: rgba(9, 13, 24, 0.9);
+    }
+    .main-content {
+      flex-grow: 1;
+      padding-top: 72px;
+    }
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-sm);
+      width: 100%;
+    }
+
+    /* ─── Standard Buttons ────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      user-select: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      color: hsl(222, 40%, 4%);
+      font-weight: 700;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 245, 245, 0.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 245, 245, 0.35);
+    }
+    .btn-secondary {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+    .btn-secondary:hover {
+      background: hsl(222, 18%, 18%);
+      border-color: var(--border-hover);
+      color: #fff;
+    }
+    .btn-outline-cyan {
+      background: transparent;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 245, 245, 0.3);
+    }
+    .btn-outline-cyan:hover {
+      background: rgba(0, 245, 245, 0.08);
+      border-color: var(--accent-cyan);
+    }
+    .btn-icon {
+      width: 40px; height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .btn-icon:hover {
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
+      border-color: var(--border-hover);
+    }
+
+    /* ─── Form Elements ───────────────────────────────────── */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .input-label {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-input {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xs);
+      padding: 0.75rem 1rem;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      width: 100%;
+      transition: var(--transition-fast);
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 245, 245, 0.15);
+    }
+    .error-text {
+      color: var(--accent-rose);
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+
+    /* ─── SPA View Control ────────────────────────────────── */
+    .view-section {
+      display: none;
+    }
+    .view-section.active {
+      display: block;
+    }
+
+    /* ─── Grid & Card Glow Layouts ────────────────────────── */
+    .glow-card {
+      position: relative;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .glow-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+    .glow-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 245, 245, 0.25);
+      box-shadow: 0 12px 30px rgba(0, 245, 245, 0.05), 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .glow-card:hover::before {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+    }
+    .glow-card:hover .product-card-image {
+      transform: scale(1.05);
+    }
+    .glow-card:hover .product-card-title {
+      color: var(--accent-cyan) !important;
+    }
+
+    /* ─── Animations ──────────────────────────────────────── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    @keyframes scaleUp {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes checkmarkDraw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .animate-fade {
+      animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .animate-scale {
+      animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* Responsive Grid Layout Rules */
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (min-width: 768px) {
+      .checkout-layout {
+        grid-template-columns: 1.25fr 0.75fr;
+      }
+    }
+    @media (min-width: 992px) {
+      .catalog-layout {
+        grid-template-columns: 280px 1fr;
+      }
+      .product-detail-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navbar ──────────────────────────────────────────── -->
+  <header class="glass-nav" id="main-nav">
+    <div class="section-container" style="display: flex; justify-content: space-between; align-items: center; padding: 0 var(--space-sm); height: 100%;">
+      
+      <!-- Logo -->
+      <div style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer;" onclick="appRouter.navigate('home')">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 2L30 10V22L16 30L2 22V10L16 2Z" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linejoin="round" />
+          <path d="M16 8L25 13V19L16 24L7 19V13L16 8Z" fill="url(#logo-grad)" opacity="0.3" />
+          <path d="M16 12V20" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" />
+          <defs>
+            <linearGradient id="logo-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="var(--accent-purple)" />
+              <stop offset="1" stop-color="var(--accent-cyan)" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span style="font-family: var(--font-display); Innovation; font-weight: 800; fontSize: 1.3rem; letter-spacing: -0.02em; color: #fff;">
+          NEXUS<span style="color: var(--accent-cyan);">MARKET</span>
+        </span>
+      </div>
+
+      <!-- Desktop Search -->
+      <div id="desktop-search-container" style="position: relative; width: 320px; display: none;">
+        <input
+          type="text"
+          id="search-input"
+          class="form-input"
+          placeholder="Search premium gear..."
+          style="padding-left: 2.5rem; border-radius: var(--radius-full); font-size: 0.85rem; height: 36px;"
+          oninput="handleSearchInput(event)"
+        />
+        <svg style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+
+      <!-- Navigation & Cart -->
+      <nav style="display: flex; align-items: center; gap: 1.25rem;">
+        <div id="desktop-nav-links" style="display: none; gap: 1.5rem;">
+          <button onclick="appRouter.navigate('home')" id="nav-btn-home" style="background: none; border: none; color: var(--accent-cyan); cursor: pointer; font-family: var(--font-display); font-weight: 600; font-size: 0.9rem;">Home</button>
+          <button onclick="appRouter.navigate('catalog')" id="nav-btn-catalog" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-family: var(--font-display); font-weight: 600; font-size: 0.9rem;">Catalog</button>
+        </div>
+
+        <!-- Cart Button -->
+        <button onclick="cartDrawer.open()" class="btn-icon" style="position: relative; border-radius: var(--radius-full); width: 42px; height: 42px;" aria-label="Shopping Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span id="cart-badge" style="display: none; position: absolute; top: -4px; right: -4px; background: linear-gradient(135deg, var(--accent-rose), var(--accent-purple)); color: #fff; font-size: 0.72rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.5);">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="btn-icon" id="mobile-toggle" style="border-radius: var(--radius-full);" onclick="toggleMobileMenu()">
+          <svg id="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile Drawer Links Menu -->
+    <div id="mobile-nav-menu" style="display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1.5rem; flex-direction: column; gap: 1rem; z-index: 999;" class="animate-fade">
+      <input
+        type="text"
+        id="mobile-search-input"
+        class="form-input"
+        placeholder="Search premium gear..."
+        style="padding-left: 2.5rem; border-radius: var(--radius-full); font-size: 0.85rem;"
+        oninput="handleSearchInput(event)"
+      />
+      <button onclick="appRouter.navigate('home'); toggleMobileMenu();" style="background: none; border: none; color: var(--text-primary); text-align: left; font-family: var(--font-display); font-weight: 600; font-size: 1rem; cursor: pointer; padding: 0.5rem 0;">Home</button>
+      <button onclick="appRouter.navigate('catalog'); toggleMobileMenu();" style="background: none; border: none; color: var(--text-primary); text-align: left; font-family: var(--font-display); font-weight: 600; font-size: 1rem; cursor: pointer; padding: 0.5rem 0;">Catalog</button>
+    </div>
+  </header>
+
+  <!-- ─── Page Views ──────────────────────────────────────── -->
+  <main class="main-content">
+    
+    <!-- 1. HOME VIEW -->
+    <section id="view-home" class="view-section active">
+      <!-- Hero -->
+      <div style="position: relative; overflow: hidden; padding: 5rem 0 3rem 0; background: var(--bg-primary);">
+        <div style="position: absolute; inset: 0; background: radial-gradient(circle at 10% 20%, rgba(155, 81, 235, 0.08) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(0, 245, 245, 0.08) 0%, transparent 45%); pointer-events: none;"></div>
+        <div class="section-container animate-fade" style="position: relative; text-align: center;">
+          <div style="display: inline-flex; align-items: center; gap: 0.6rem; fontSize: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent-cyan); margin-bottom: 1.5rem;">
+            <span style="width: 20px; height: 1px; background: var(--accent-cyan);"></span>
+            <span>Next-Generation Gear</span>
+            <span style="width: 20px; height: 1px; background: var(--accent-cyan);"></span>
+          </div>
+          <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: #fff; margin-bottom: 1.5rem; text-transform: uppercase;">
+            Gear Up For The <br />
+            <span style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Digital Frontier</span>
+          </h1>
+          <p style="font-size: clamp(0.95rem, 2vw, 1.15rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem auto; line-height: 1.75;">
+            Explore NexusMarket's curated catalog of high-performance electronics, smart wearables, and artisanal typing gear. Engineered for enthusiasts, optimized for speed.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem;">
+            <button onclick="appRouter.navigate('catalog')" class="btn btn-primary">
+              <span>Explore Catalog</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+
+          <!-- Quick Jump Categories -->
+          <div style="margin-bottom: 4rem;">
+            <p style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; margin-bottom: 1.25rem;">Quick jump to category</p>
+            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;" id="home-category-jump"></div>
+          </div>
+
+          <!-- Stats Panel -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem 1.5rem; max-width: 860px; margin: 0 auto;">
+            <div>
+              <span style="display: block; font-size: 2rem; font-weight: 800; color: var(--accent-purple); font-family: var(--font-display);">9+</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Premium Gadgets</span>
+            </div>
+            <div style="border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color);" class="stat-middle">
+              <span style="display: block; font-size: 2rem; font-weight: 800; color: var(--accent-cyan); font-family: var(--font-display);">48h</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Express Dispatch</span>
+            </div>
+            <div>
+              <span style="display: block; font-size: 2rem; font-weight: 800; color: var(--accent-amber); font-family: var(--font-display);">100%</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Secure Checkout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Items Showcase -->
+      <section style="background: var(--bg-primary); padding: 4rem 0;">
+        <div class="section-container">
+          <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-purple);">Curated Picks</span>
+            <h2 style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 800; text-transform: uppercase; margin-top: 0.5rem; color: #fff;">Featured Hardware</h2>
+          </div>
+          <div id="featured-products-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;"></div>
+          <div style="text-align: center; marginTop: 3.5rem; padding-top: 3rem;">
+            <button onclick="appRouter.navigate('catalog')" class="btn btn-outline-cyan">
+              <span>View Full Catalog</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 2. CATALOG VIEW -->
+    <section id="view-catalog" class="view-section">
+      <div class="section-container animate-fade" style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+        
+        <!-- Header -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem; gap: 1rem;">
+          <div>
+            <h2 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; text-transform: uppercase;">Product Catalog</h2>
+            <p id="catalog-count-label" style="font-size: 0.85rem; color: var(--text-secondary);">Showing 9 premium items</p>
+          </div>
+          
+          <!-- Sort -->
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em;">Sort By</label>
+            <select id="sort-select" class="form-input" style="padding: 0.4rem 1.75rem 0.4rem 0.75rem; font-size: 0.85rem; height: 34px; width: 180px; border-radius: var(--radius-xs); border: 1px solid var(--border-color); background: var(--bg-tertiary);" onchange="handleSortSelect(event)">
+              <option value="default">Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="catalog-layout">
+          <!-- Filter Sidebar -->
+          <aside style="display: flex; flex-direction: column; gap: 1.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; height: fit-content;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h3 style="font-size: 1rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.04em; color: #fff;">Filters</h3>
+              <button onclick="resetAllFilters()" style="background: none; border: none; color: var(--accent-cyan); font-size: 0.78rem; font-weight: 700; cursor: pointer; text-transform: uppercase;">Reset All</button>
+            </div>
+
+            <!-- Categories -->
+            <div>
+              <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 700;">Category</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.4rem;" id="catalog-category-sidebar"></div>
+            </div>
+
+            <!-- Price Slider -->
+            <div>
+              <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 700; display: flex; justify-content: space-between;">
+                <span>Price Range</span>
+                <span id="price-slider-label" style="color: var(--accent-cyan); font-family: var(--font-display); text-transform: none;">Up to $500</span>
+              </h4>
+              <input
+                type="range"
+                id="price-range-slider"
+                min="0" max="500" step="10"
+                value="500"
+                style="width: 100%; accent-color: var(--accent-cyan); height: 5px; cursor: pointer;"
+                oninput="handlePriceSlider(event)"
+              />
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                <span>$0</span>
+                <span>$500</span>
+              </div>
+            </div>
+
+            <!-- Min Rating -->
+            <div>
+              <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 700;">Minimum Rating</h4>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="rating-filter-chips"></div>
+            </div>
+          </aside>
+
+          <!-- Main Grid -->
+          <main id="catalog-products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;"></main>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PRODUCT DETAIL VIEW -->
+    <section id="view-detail" class="view-section">
+      <div class="section-container animate-fade" id="detail-page-container"></div>
+    </section>
+
+    <!-- 4. CHECKOUT VIEW -->
+    <section id="view-checkout" class="view-section">
+      <div class="section-container animate-fade" id="checkout-page-container"></div>
+    </section>
+
+  </main>
+
+  <!-- ─── Cart Drawer Overlay ──────────────────────────────── -->
+  <div id="cart-drawer-wrapper" style="display: none; position: fixed; inset: 0; z-index: 2000;">
+    <!-- Backdrop overlay -->
+    <div onclick="cartDrawer.close()" style="position: absolute; inset: 0; background: rgba(5, 7, 12, 0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"></div>
+    
+    <!-- Drawer Drawer -->
+    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 100%; max-width: 440px; background: var(--bg-secondary); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: 2100; box-shadow: var(--glass-shadow);" class="animate-slide">
+      
+      <!-- Drawer Header -->
+      <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; text-transform: uppercase; color: #fff;">Shopping Cart</h3>
+        <button onclick="cartDrawer.close()" class="btn-icon" style="border-radius: 50%; width: 36px; height: 36px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+
+      <!-- Drawer Content Scroll Area -->
+      <div id="cart-drawer-items" style="flex-grow: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;"></div>
+
+      <!-- Drawer Billing Footer -->
+      <div id="cart-drawer-footer" style="padding: 1.5rem; border-top: 1px solid var(--border-color); background: var(--bg-tertiary); display: none;"></div>
+    </div>
+  </div>
+
+  <!-- ─── Footer ──────────────────────────────────────────── -->
+  <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 4rem 0 2rem 0;">
+    <div class="section-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; padding-bottom: 3rem;">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;" onclick="appRouter.navigate('home')">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L30 10V22L16 30L2 22V10L16 2Z" stroke="var(--accent-cyan)" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M16 8L25 13V19L16 24L7 19V13L16 8Z" fill="var(--accent-purple)" opacity="0.4" />
+          </svg>
+          <span style="font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: #fff;">NEXUS<span style="color: var(--accent-cyan);">MARKET</span></span>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; max-width: 240px;">
+          Premium e-commerce catalog featuring high-performance typing, audio, and wearable hardware.
+        </p>
+        <div style="display: flex; gap: 0.75rem; marginTop: 0.5rem;">
+          <a href="https://github.com/rajkumarprasad" target="_blank" class="btn-icon" style="width: 34px; height: 34px; border-radius: 50%;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://linkedin.com/in/rajkumarprasad" target="_blank" class="btn-icon" style="width: 34px; height: 34px; border-radius: 50%;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: #fff; margin-bottom: 1.25rem;">Store Navigation</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem;">
+          <li><button onclick="appRouter.navigate('home')" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; padding: 0;">Home Base</button></li>
+          <li><button onclick="appRouter.navigate('catalog')" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; padding: 0;">Product Catalog</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: #fff; margin-bottom: 1.25rem;">Customer Care</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; color: var(--text-secondary);">
+          <li>Fulfillment Info</li>
+          <li>Return Standards</li>
+          <li>Secure Invoicing</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: #fff; margin-bottom: 1.25rem;">Newsletter Dispatch</h4>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">Subscribe to receive stock drops, hardware updates, and discounts.</p>
+        <div id="newsletter-form-container">
+          <form onsubmit="handleNewsletterSubmit(event)" style="display: flex; gap: 0.5rem;">
+            <input type="email" id="newsletter-email" class="form-input" placeholder="Enter email..." style="flex-grow: 1; height: 36px;" required />
+            <button type="submit" class="btn btn-primary" style="padding: 0 1rem; height: 36px; font-size: 0.8rem;">Join</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="section-container" style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted);">
+      <span>&copy; 2026 NexusMarket Corp. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- ─── Optimized SPA JavaScript ────────────────────────── -->
+  <script>
+    // 1. MOCK DATABASE (Including Titan watch)
+    const products = [
+      {
+        id: "nexus-watch-ultra",
+        name: "Nexus Watch Ultra",
+        tagline: "The ultimate rugged titanium smartwatch.",
+        category: "wearables",
+        price: 299,
+        rating: 4.8,
+        reviewsCount: 142,
+        image: "./images/products/watch-ultra.webp",
+        stock: 14,
+        description: "Architected for extreme environments, the Nexus Watch Ultra features a solid titanium case, dual-frequency GPS, up to 36 hours of battery life, and advanced cellular connectivity. Designed with a bezel-less OLED screen protected by sapphire glass, it provides continuous biometric tracking.",
+        specs: {
+          "Case Material": "Aerospace-grade Titanium",
+          "Display": "1.92-inch Retina Always-On OLED (2000 nits)",
+          "Battery Life": "Up to 36 hours (normal use)",
+          "Water Resistance": "WR100 (100 meters)",
+          "Sensors": "Heart Rate, ECG, Blood Oxygen"
+        },
+        reviews: [
+          { name: "Julian K.", rating: 5, comment: "Survival tracking in the mountains was flawless. Battery life exceeded my expectations.", date: "2026-05-12" },
+          { name: "Sienna M.", rating: 4, comment: "Incredibly durable and gorgeous UI. A bit bulky on smaller wrists.", date: "2026-06-01" }
+        ]
+      },
+      {
+        id: "titan-nebula-chrono",
+        name: "Titan Nebula Chrono",
+        tagline: "A timeless solid gold mechanical chronograph.",
+        category: "wearables",
+        price: 499,
+        rating: 4.8,
+        reviewsCount: 37,
+        image: "./images/products/titan-watch.webp",
+        stock: 3,
+        description: "An exquisite mechanical chronograph crafted in collaboration with Titan. Featuring an 18-karat solid gold case, premium hand-wound movement, sapphire crystal backing showing the intricate internal gears, and a hand-stitched alligator leather strap.",
+        specs: {
+          "Case Material": "18-karat Solid Yellow Gold",
+          "Movement": "Hand-wound Mechanical Chronograph",
+          "Power Reserve": "Up to 48 hours",
+          "Glass": "Scratch-resistant Sapphire Crystal",
+          "Strap": "Genuine Alligator Leather"
+        },
+        reviews: [
+          { name: "Arthur C.", rating: 5, comment: "Absolute masterclass. The sweeping seconds hand and skeleton back are mesmerizing.", date: "2026-05-20" },
+          { name: "Kiran J.", rating: 4, comment: "Stunning heirloom piece. Note that it is hand-wound only.", date: "2026-06-05" }
+        ]
+      },
+      {
+        id: "aether-keys-pro",
+        name: "Aether Keys Pro",
+        tagline: "Retro-modern typing perfection with silent linear switches.",
+        category: "keyboards",
+        price: 189,
+        rating: 4.9,
+        reviewsCount: 96,
+        image: "./images/products/keyboard.webp",
+        stock: 8,
+        description: "A compact 75% mechanical keyboard designed for coders and creators. Featuring hot-swappable socket mounts, custom factory-lubed linear switches, thick PBT keycaps with translucent legends, and a solid CNC-milled aluminum chassis.",
+        specs: {
+          "Form Factor": "75% Layout (84 Keys)",
+          "Switch Type": "Aether Custom Silent Linear (Hot-swappable)",
+          "Chassis": "Anodized CNC Aluminum",
+          "Connectivity": "Bluetooth 5.1 / 2.4GHz / USB-C",
+          "Backlight": "Per-key Addressable South-facing RGB"
+        },
+        reviews: [
+          { name: "Marcus T.", rating: 5, comment: "The sound profile is a dream—deep creaminess. Latency is non-existent.", date: "2026-05-28" }
+        ]
+      },
+      {
+        id: "sonic-dome-studio",
+        name: "Sonic Dome Studio",
+        tagline: "Audiophile-grade wireless ANC headphones.",
+        category: "audio",
+        price: 349,
+        rating: 4.7,
+        reviewsCount: 204,
+        image: "./images/products/headphones.webp",
+        stock: 5,
+        description: "Escape the noise with Sonic Dome Studio. Engineered with bespoke 40mm beryllium dynamic drivers and state-of-the-art Hybrid Active Noise Cancellation, these headphones reproduce studio-fidelity audio.",
+        specs: {
+          "Drivers": "40mm Beryllium Dynamic Drivers",
+          "Frequency Range": "4Hz - 40,000Hz",
+          "ANC Depth": "Up to 42dB (Adaptive)",
+          "Battery Life": "Up to 45 hours"
+        },
+        reviews: [
+          { name: "David L.", rating: 5, comment: "Unbelievable instrument separation. Bass is tight, not bloated.", date: "2026-04-19" }
+        ]
+      },
+      {
+        id: "nova-charge-dock",
+        name: "Nova Charge Dock",
+        tagline: "3-in-1 magnetic wireless charging station.",
+        category: "charging",
+        price: 79,
+        rating: 4.6,
+        reviewsCount: 88,
+        image: "./images/products/charger.webp",
+        stock: 22,
+        description: "Power up your ecosystem simultaneously. The Nova Charge Dock features a high-grade magnetic stand for floating phone placement, a wireless pad for earbuds, and a integrated swing-out charger for your smartwatch.",
+        specs: {
+          "Output Capacity": "15W Phone + 5W Watch + 5W Earbuds",
+          "Safety Protocols": "FOD, Over-current, Temp Control",
+          "Power Input": "USB-C PD 30W+ Required"
+        },
+        reviews: [
+          { name: "Leo G.", rating: 4, comment: "Decluttered my desk completely. Phone stays cool while charging.", date: "2026-05-15" }
+        ]
+      },
+      {
+        id: "vibe-tube-xl",
+        name: "Vibe Tube XL",
+        tagline: "High-fidelity portable cylindrical speaker.",
+        category: "audio",
+        price: 129,
+        rating: 4.5,
+        reviewsCount: 112,
+        image: "./images/products/speaker.webp",
+        stock: 12,
+        description: "Fill any space with 360-degree high-fidelity sound. The Vibe Tube XL combines dual passive radiators with dedicated tweeters and a real wood veneer finish. IPX7 waterproof rating ensures it performs outdoors.",
+        specs: {
+          "Output Power": "40W RMS",
+          "Acoustics": "Dual 2-inch Drivers & Dual Passive Radiators",
+          "Waterproofing": "IPX7 Rated"
+        },
+        reviews: [
+          { name: "Jordan V.", rating: 5, comment: "Surprisingly loud. The wood styling looks fantastic in my office.", date: "2026-05-30" }
+        ]
+      },
+      {
+        id: "lumina-bar",
+        name: "Lumina Bar",
+        tagline: "Asymmetric screen bar for desk eye-comfort.",
+        category: "smart-home",
+        price: 59,
+        rating: 4.8,
+        reviewsCount: 75,
+        image: "./images/products/light.webp",
+        stock: 18,
+        description: "Elevate your desktop setup and protect your eyes. Lumina Bar clips onto your monitor and provides glare-free, asymmetric light distribution. Control brightness with the wireless dial.",
+        specs: {
+          "Light Pattern": "Asymmetric Optical Design",
+          "Color Temp": "2700K - 6500K",
+          "Color Rendering": "Ra > 95"
+        },
+        reviews: [
+          { name: "Tariq A.", rating: 5, comment: "Completely eliminated eye strain during night coding sessions.", date: "2026-06-03" }
+        ]
+      },
+      {
+        id: "nebula-beam",
+        name: "Nebula Beam Projector",
+        tagline: "Full HD smart mini projector with autofocus.",
+        category: "smart-home",
+        price: 399,
+        rating: 4.6,
+        reviewsCount: 52,
+        image: "./images/products/projector.webp",
+        stock: 4,
+        description: "Transform any wall into a 120-inch theater. Nebula Beam features Native 1080p projection, instant automatic keystone correction, and dynamic autofocus.",
+        specs: {
+          "Resolution": "Native 1920 x 1080 (1080p)",
+          "Brightness": "600 ANSI Lumens",
+          "Projection Size": "40 to 120 inches"
+        },
+        reviews: [
+          { name: "Oliver S.", rating: 5, comment: "Autofocus makes setup instantaneous. Highly recommended.", date: "2026-05-19" }
+        ]
+      },
+      {
+        id: "aero-pods-pro",
+        name: "Aero Pods Pro",
+        tagline: "True-wireless earbuds with futuristic translucent case.",
+        category: "audio",
+        price: 149,
+        rating: 4.7,
+        reviewsCount: 167,
+        image: "./images/products/earbuds.webp",
+        stock: 15,
+        description: "Featuring a translucent polycarbonate charging case, Aero Pods Pro showcase high-tech inner circuitry. Inside, 11mm graphene drivers deliver rich acoustics.",
+        specs: {
+          "Driver Material": "11mm Graphene Coated Drivers",
+          "Active Noise Cancellation": "Dynamic Hybrid ANC",
+          "Battery Charge": "7 hours buds + 23 hours in case"
+        },
+        reviews: [
+          { name: "Xavier P.", rating: 5, comment: "The transparent case design is absolutely gorgeous.", date: "2026-05-09" }
+        ]
+      }
+    ];
+
+    // 2. STATE MANAGER
+    const store = {
+      cart: JSON.parse(localStorage.getItem('nexus_vanilla_cart')) || [],
+      searchQuery: '',
+      activeCategory: 'all',
+      maxPrice: 500,
+      minRating: 0,
+      sortBy: 'default',
+      
+      saveCart() {
+        localStorage.setItem('nexus_vanilla_cart', JSON.stringify(this.cart));
+        this.updateBadge();
+        cartDrawer.render();
+      },
+      
+      addToCart(productId, qty = 1) {
+        const prod = products.find(p => p.id === productId);
+        if (!prod || prod.stock <= 0) return;
+        
+        const existing = this.cart.find(item => item.product.id === productId);
+        if (existing) {
+          existing.quantity = Math.min(existing.quantity + qty, prod.stock);
+        } else {
+          this.cart.push({ product: prod, quantity: Math.min(qty, prod.stock) });
+        }
+        this.saveCart();
+      },
+      
+      removeFromCart(productId) {
+        this.cart = this.cart.filter(item => item.product.id !== productId);
+        this.saveCart();
+      },
+      
+      updateCartQty(productId, qty) {
+        const item = this.cart.find(i => i.product.id === productId);
+        if (item) {
+          item.quantity = Math.min(Math.max(1, qty), item.product.stock);
+        }
+        this.saveCart();
+      },
+      
+      clearCart() {
+        this.cart = [];
+        this.saveCart();
+      },
+      
+      get cartSubtotal() {
+        return this.cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+      },
+      get cartTotalItems() {
+        return this.cart.reduce((sum, item) => sum + item.quantity, 0);
+      },
+      get cartTax() {
+        return this.cartSubtotal * 0.08;
+      },
+      get shippingFee() {
+        return (this.cartSubtotal > 150 || this.cartSubtotal === 0) ? 0 : 15;
+      },
+      get cartTotal() {
+        return this.cartSubtotal + this.cartTax + this.shippingFee;
+      },
+      
+      updateBadge() {
+        const badge = document.getElementById('cart-badge');
+        const qty = this.cartTotalItems;
+        if (qty > 0) {
+          badge.textContent = qty;
+          badge.style.display = 'flex';
+          badge.classList.add('cart-pop-trigger');
+          setTimeout(() => badge.classList.remove('cart-pop-trigger'), 300);
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+    };
+
+    // 3. SPA ROUTER
+    const appRouter = {
+      navigate(routeId) {
+        window.location.hash = routeId;
+      },
+      
+      resolve() {
+        const hash = window.location.hash.slice(1) || 'home';
+        
+        // Hide all views
+        document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+        
+        // Remove active state from nav buttons
+        document.getElementById('nav-btn-home').style.color = 'var(--text-secondary)';
+        document.getElementById('nav-btn-catalog').style.color = 'var(--text-secondary)';
+        
+        if (hash === 'home') {
+          document.getElementById('view-home').classList.add('active');
+          document.getElementById('nav-btn-home').style.color = 'var(--accent-cyan)';
+          homeView.render();
+        } else if (hash === 'catalog') {
+          document.getElementById('view-catalog').classList.add('active');
+          document.getElementById('nav-btn-catalog').style.color = 'var(--accent-cyan)';
+          catalogView.render();
+        } else if (hash.startsWith('product/')) {
+          const prodId = hash.replace('product/', '');
+          document.getElementById('view-detail').classList.add('active');
+          detailView.render(prodId);
+        } else if (hash === 'checkout') {
+          document.getElementById('view-checkout').classList.add('active');
+          checkoutView.render();
+        }
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('hashchange', () => appRouter.resolve());
+
+    // 4. VIEW RENDERERS
+
+    // 4A. Home View
+    const homeView = {
+      render() {
+        // Render category click jumps
+        const jumpContainer = document.getElementById('home-category-jump');
+        const cats = [
+          { id: 'audio', label: 'Audio Tech', icon: '🎧' },
+          { id: 'wearables', label: 'Wearables', icon: '⌚' },
+          { id: 'keyboards', label: 'Keyboards', icon: '⌨️' },
+          { id: 'charging', label: 'Power', icon: '⚡' },
+          { id: 'smart-home', label: 'Smart Living', icon: '🏠' }
+        ];
+        
+        jumpContainer.innerHTML = cats.map(c => `
+          <button onclick="homeView.jumpToCategory('${c.id}')" class="btn btn-secondary" style="padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: 0.5rem;">
+            <span>${c.icon}</span>
+            <span>${c.label}</span>
+          </button>
+        `).join('');
+
+        // Render featured products (first 3)
+        const grid = document.getElementById('featured-products-grid');
+        grid.innerHTML = products.slice(0, 3).map(p => this.createCardHTML(p)).join('');
+      },
+      
+      jumpToCategory(catId) {
+        store.activeCategory = catId;
+        appRouter.navigate('catalog');
+      },
+
+      createCardHTML(p) {
+        const isOutOfStock = p.stock === 0;
+        const isLowStock = p.stock <= 5 && p.stock > 0;
+        return `
+          <article onclick="appRouter.navigate('product/${p.id}')" class="glow-card" style="cursor: pointer;">
+            <div style="position: relative; height: 240px; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color); overflow: hidden;">
+              <img src="${p.image}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover;" />
+              ${isOutOfStock ? `<span style="position: absolute; top: 1rem; right: 1rem; background: rgba(235, 87, 87, 0.9); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: var(--radius-xs); text-transform: uppercase;">Sold Out</span>` : ''}
+              ${isLowStock ? `<span style="position: absolute; top: 1rem; right: 1rem; background: rgba(245, 166, 35, 0.9); color: #000; font-size: 0.7rem; font-weight: 800; padding: 0.25rem 0.6rem; border-radius: var(--radius-xs); text-transform: uppercase;">Only ${p.stock} left</span>` : ''}
+              <span style="position: absolute; bottom: 0.75rem; left: 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--accent-cyan); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: var(--radius-full);">${p.category}</span>
+            </div>
+            <div style="padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1;">
+              <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: #fff; margin-bottom: 0.4rem;">${p.name}</h3>
+              <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; height: 2.5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${p.tagline}</p>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; margin-bottom: 1.25rem;">
+                <span style="font-size: 1.25rem; font-weight: 800; color: #fff; font-family: var(--font-display);">$${p.price}</span>
+                <div style="display: flex; align-items: center; gap: 0.25rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent-amber)" stroke="var(--accent-amber)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <span style="font-size: 0.82rem; color: #fff; font-weight: 700;">${p.rating}</span>
+                </div>
+              </div>
+              <button onclick="handleQuickAddCard(event, '${p.id}')" ${isOutOfStock ? 'disabled' : ''} class="btn" style="width: 100%; padding: 0.6rem 1rem; font-size: 0.82rem; background: ${isOutOfStock ? 'var(--bg-tertiary)' : 'linear-gradient(135deg, var(--bg-tertiary), rgba(0, 245, 245, 0.05))'}; color: ${isOutOfStock ? 'var(--text-muted)' : 'var(--accent-cyan)'}; border: ${isOutOfStock ? 'none' : '1px solid rgba(0, 245, 245, 0.25)'};">
+                ${isOutOfStock ? 'Sold Out' : 'Quick Add'}
+              </button>
+            </div>
+          </article>
+        `;
+      }
+    };
+
+    // 4B. Catalog View
+    const catalogView = {
+      render() {
+        // Sidebar categories list rendering
+        const sideCats = [
+          { id: 'all', label: 'All Gear' },
+          { id: 'audio', label: 'Audio Tech' },
+          { id: 'wearables', label: 'Wearables' },
+          { id: 'keyboards', label: 'Keyboards' },
+          { id: 'charging', label: 'Power Stations' },
+          { id: 'smart-home', label: 'Smart Living' }
+        ];
+        
+        const catContainer = document.getElementById('catalog-category-sidebar');
+        catContainer.innerHTML = sideCats.map(c => `
+          <button onclick="catalogView.setCategory('${c.id}')" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; border-radius: var(--radius-xs); background: ${store.activeCategory === c.id ? 'rgba(0, 245, 245, 0.08)' : 'transparent'}; border: none; color: ${store.activeCategory === c.id ? 'var(--accent-cyan)' : 'var(--text-secondary)'}; font-weight: ${store.activeCategory === c.id ? 700 : 500}; font-size: 0.88rem; text-align: left; cursor: pointer; width: 100%; transition: var(--transition-fast);">
+            <span>${c.label}</span>
+            ${store.activeCategory === c.id ? '<span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan);"></span>' : ''}
+          </button>
+        `).join('');
+
+        // Sidebar rating chips rendering
+        const rateChips = [0, 4.5, 4.7, 4.8];
+        const chipsContainer = document.getElementById('rating-filter-chips');
+        chipsContainer.innerHTML = rateChips.map(r => `
+          <button onclick="catalogView.setMinRating(${r})" style="padding: 0.35rem 0.75rem; font-size: 0.78rem; font-weight: 700; border-radius: var(--radius-full); border: 1px solid ${store.minRating === r ? 'var(--accent-cyan)' : 'var(--border-color)'}; background: ${store.minRating === r ? 'rgba(0, 245, 245, 0.08)' : 'transparent'}; color: ${store.minRating === r ? 'var(--accent-cyan)' : 'var(--text-secondary)'}; cursor: pointer;">
+            ${r === 0 ? 'All' : `${r}★+`}
+          </button>
+        `).join('');
+
+        // Apply filters & render Grid
+        const filtered = products.filter(p => {
+          const matchesSearch = p.name.toLowerCase().includes(store.searchQuery.toLowerCase()) || p.tagline.toLowerCase().includes(store.searchQuery.toLowerCase());
+          const matchesCat = store.activeCategory === 'all' || p.category === store.activeCategory;
+          const matchesPrice = p.price <= store.maxPrice;
+          const matchesRate = p.rating >= store.minRating;
+          return matchesSearch && matchesCat && matchesPrice && matchesRate;
+        }).sort((a, b) => {
+          if (store.sortBy === 'price-asc') return a.price - b.price;
+          if (store.sortBy === 'price-desc') return b.price - a.price;
+          if (store.sortBy === 'rating') return b.rating - a.rating;
+          return 0;
+        });
+
+        // Set labels
+        document.getElementById('catalog-count-label').textContent = `Showing ${filtered.length} of ${products.length} premium items`;
+        document.getElementById('price-slider-label').textContent = `Up to $${store.maxPrice}`;
+        document.getElementById('price-range-slider').value = store.maxPrice;
+        document.getElementById('sort-select').value = store.sortBy;
+
+        const grid = document.getElementById('catalog-products-grid');
+        if (filtered.length > 0) {
+          grid.style.display = 'grid';
+          grid.innerHTML = filtered.map(p => homeView.createCardHTML(p)).join('');
+        } else {
+          grid.style.display = 'block';
+          grid.innerHTML = `
+            <div class="animate-scale" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1.5rem;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff;">No Gear Found</h3>
+              <p style="color: var(--text-secondary); max-width: 400px; font-size: 0.9rem; margin-bottom: 1.75rem;">We couldn't find any products matching your current combination of filters.</p>
+              <button onclick="resetAllFilters()" class="btn btn-primary">Clear Filters & Show All</button>
+            </div>
+          `;
+        }
+      },
+
+      setCategory(catId) {
+        store.activeCategory = catId;
+        this.render();
+      },
+
+      setMinRating(rating) {
+        store.minRating = rating;
+        this.render();
+      }
+    };
+
+    // 4C. Product Detail View
+    const detailView = {
+      qty: 1,
+      render(prodId) {
+        const p = products.find(prod => prod.id === prodId);
+        const container = document.getElementById('detail-page-container');
+        
+        if (!p) {
+          container.innerHTML = `
+            <div style="text-align: center; padding: 5rem 0;">
+              <h2>Product Not Found</h2>
+              <button onclick="appRouter.navigate('catalog')" class="btn btn-primary">Return to Catalog</button>
+            </div>
+          `;
+          return;
+        }
+
+        this.qty = 1; // Reset qty
+        const isOutOfStock = p.stock === 0;
+        const isLowStock = p.stock <= 5 && p.stock > 0;
+
+        // Render Related (same category, excluding current, limit 3)
+        const related = products.filter(item => item.category === p.category && item.id !== p.id).slice(0, 3);
+
+        container.innerHTML = `
+          <!-- Back Link -->
+          <button onclick="appRouter.navigate('catalog')" style="background: none; border: none; color: var(--accent-cyan); display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; font-family: var(--font-display); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; margin-bottom: 2rem; padding: 0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Back to Catalog</span>
+          </button>
+
+          <!-- Main Layout -->
+          <div class="product-detail-grid">
+            
+            <!-- Left Frame -->
+            <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; height: fit-content; padding: 1rem;">
+              <img src="${p.image}" alt="${p.name}" style="width: 100%; height: auto; max-height: 500px; object-fit: cover; border-radius: var(--radius-md);" />
+              ${isOutOfStock ? '<span style="position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(235, 87, 87, 0.95); color: #fff; font-size: 0.8rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: var(--radius-xs); text-transform: uppercase;">Sold Out</span>' : ''}
+            </div>
+
+            <!-- Right Panel -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div>
+                <span style="display: inline-block; color: var(--accent-purple); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem;">${p.category}</span>
+                <h1 style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 0.5rem;">${p.name}</h1>
+                <p style="font-size: 1.1rem; color: var(--accent-cyan); font-style: italic;">${p.tagline}</p>
+              </div>
+
+              <!-- Metrics pricing -->
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+                <span style="font-size: 2rem; font-weight: 800; color: #fff; font-family: var(--font-display);">$${p.price}</span>
+                <div style="width: 1px; height: 24px; background: var(--border-color);"></div>
+                <div style="display: flex; align-items: center; gap: 0.3rem;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--accent-amber)" stroke="var(--accent-amber)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <span style="font-size: 0.9rem; font-weight: 700; color: #fff;">${p.rating}</span>
+                  <span style="font-size: 0.85rem; color: var(--text-muted);">(${p.reviewsCount} verified reviews)</span>
+                </div>
+                <div style="width: 1px; height: 24px; background: var(--border-color);"></div>
+                <div>
+                  ${isOutOfStock ? '<span style="color: var(--accent-rose); font-weight: 700;">Sold Out</span>' : isLowStock ? `<span style="color: var(--accent-amber); font-weight: 700;">Low Stock: Only ${p.stock} left!</span>` : '<span style="color: var(--accent-cyan); font-weight: 700;">In Stock</span>'}
+                </div>
+              </div>
+
+              <div>
+                <h3 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 700;">Overview</h3>
+                <p style="color: var(--text-secondary); font-size: 0.96rem; line-height: 1.75;">${p.description}</p>
+              </div>
+
+              <!-- Controls -->
+              ${!isOutOfStock ? `
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 1rem;">
+                  <div style="display: inline-flex; align-items: center; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-xs); height: 46px;">
+                    <button onclick="detailView.adjustQty(-1, ${p.stock})" style="background: none; border: none; color: var(--text-secondary); width: 40px; height: 100%; cursor: pointer; font-size: 1.2rem;">−</button>
+                    <span id="detail-qty-num" style="width: 40px; text-align: center; font-size: 0.95rem; font-weight: 700; color: #fff;">1</span>
+                    <button onclick="detailView.adjustQty(1, ${p.stock})" style="background: none; border: none; color: var(--text-secondary); width: 40px; height: 100%; cursor: pointer; font-size: 1.2rem;">+</button>
+                  </div>
+                  <button onclick="detailView.addActiveToCart('${p.id}')" class="btn btn-primary" style="height: 46px; padding: 0 2.5rem; flex-grow: 1; max-width: 280px;">Add to Cart</button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Specs & Reviews -->
+          <div style="margin-top: 4rem; display: grid; grid-template-columns: 1fr; gap: 3rem;" class="product-extra-grid">
+            <!-- Specs -->
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem;">
+              <h3 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.25rem; color: #fff;">Technical Specifications</h3>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                ${Object.entries(p.specs).map(([key, val]) => `
+                  <div style="display: grid; grid-template-columns: 1fr 2fr; border-bottom: 1px solid var(--border-color); padding-bottom: 0.6rem; gap: 1rem;">
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);">${key}</span>
+                    <span style="font-size: 0.88rem; color: #fff;">${val}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Reviews -->
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem;">
+              <h3 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.5rem; color: #fff;">Customer Reviews</h3>
+              <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                ${p.reviews.map(r => `
+                  <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                      <span style="font-weight: 700; font-size: 0.92rem; color: #fff;">${r.name}</span>
+                      <span style="font-size: 0.75rem; color: var(--text-muted);">${r.date}</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">"${r.comment}"</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Related Row -->
+          ${related.length > 0 ? `
+            <div style="margin-top: 5rem;">
+              <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.75rem; color: #fff; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">You May Also Like</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+                ${related.map(item => `
+                  <div onclick="appRouter.navigate('product/${item.id}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; cursor: pointer;" class="glow-card">
+                    <div style="height: 160px; overflow: hidden; border-radius: var(--radius-sm); background: var(--bg-tertiary); margin-bottom: 0.75rem;">
+                      <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;" />
+                    </div>
+                    <h4 style="font-family: var(--font-display); font-size: 1rem; color: #fff; margin-bottom: 0.2rem;">${item.name}</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <span style="font-size: 1.05rem; font-weight: 800; color: var(--accent-cyan);">$${item.price}</span>
+                      <span style="font-size: 0.8rem; color: var(--text-secondary);">${item.rating}★</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+        `;
+        
+        // Add double specs styles responsive
+        const style = document.createElement('style');
+        style.textContent = `
+          @media (min-width: 992px) {
+            .product-extra-grid {
+              grid-template-columns: 1fr 1fr !important;
+            }
+          }
+        `;
+        container.appendChild(style);
+      },
+      
+      adjustQty(change, max) {
+        const newQty = Math.min(Math.max(1, this.qty + change), max);
+        this.qty = newQty;
+        document.getElementById('detail-qty-num').textContent = newQty;
+      },
+      
+      addActiveToCart(prodId) {
+        store.addToCart(prodId, this.qty);
+        alert(`Added ${this.qty} items to your cart!`);
+      }
+    };
+
+    // 4D. Checkout View
+    const checkoutView = {
+      step: 1,
+      shipping: { fullName: '', email: '', address: '', city: '', zipCode: '' },
+      payment: { cardName: '', cardNumber: '', cardExpiry: '', cardCvv: '' },
+      errors: {},
+      orderId: '',
+
+      render() {
+        const container = document.getElementById('checkout-page-container');
+        
+        if (store.cart.length === 0 && this.step !== 3) {
+          container.innerHTML = `
+            <div style="text-align: center; padding: 5rem 0;">
+              <h2>Your Cart is Empty</h2>
+              <button onclick="appRouter.navigate('catalog')" class="btn btn-primary" style="margin-top: 1.5rem;">Return to Catalog</button>
+            </div>
+          `;
+          return;
+        }
+
+        if (this.step === 3) {
+          this.renderSuccess(container);
+          return;
+        }
+
+        container.innerHTML = `
+          <!-- Steps indicators -->
+          <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 3rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="width: 32px; height: 32px; border-radius: 50%; background: ${this.step === 1 ? 'linear-gradient(135deg, var(--accent-purple), var(--accent-cyan))' : 'var(--bg-tertiary)'}; color: ${this.step === 1 ? '#000' : 'var(--text-secondary)'}; font-weight: 800; display: flex; align-items: center; justify-content: center;">1</span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: ${this.step === 1 ? 'var(--accent-cyan)' : 'var(--text-secondary)'}; text-transform: uppercase; letter-spacing: 0.05em;">Shipping</span>
+            </div>
+            <div style="width: 60px; height: 2px; background: var(--border-color);"></div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="width: 32px; height: 32px; border-radius: 50%; background: ${this.step === 2 ? 'linear-gradient(135deg, var(--accent-purple), var(--accent-cyan))' : 'var(--bg-tertiary)'}; color: ${this.step === 2 ? '#000' : 'var(--text-secondary)'}; font-weight: 800; display: flex; align-items: center; justify-content: center;">2</span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: ${this.step === 2 ? 'var(--accent-cyan)' : 'var(--text-secondary)'}; text-transform: uppercase; letter-spacing: 0.05em;">Payment</span>
+            </div>
+          </div>
+
+          <div class="checkout-layout">
+            
+            <!-- Left Form Col -->
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem;">
+              ${this.step === 1 ? this.getShippingFormHTML() : this.getPaymentFormHTML()}
+            </div>
+
+            <!-- Right Invoicing Summary Col -->
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem; height: fit-content;">
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 1.25rem; color: #fff;">Order Summary</h3>
+              <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; max-height: 240px; overflow-y: auto;">
+                ${store.cart.map(item => `
+                  <div style="display: flex; gap: 0.75rem; align-items: center;">
+                    <div style="width: 50px; height: 50px; border-radius: var(--radius-xs); overflow: hidden; background: var(--bg-tertiary); flex-shrink: 0;"><img src="${item.product.image}" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                    <div style="flex-grow: 1;">
+                      <h4 style="font-size: 0.85rem; font-weight: 700; color: #fff;">${item.product.name}</h4>
+                      <span style="font-size: 0.78rem; color: var(--text-muted)">Qty: ${item.quantity}</span>
+                    </div>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan);">$${(item.product.price * item.quantity).toFixed(2)}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div style="width: 100%; height: 1px; background: var(--border-color); margin-bottom: 1rem;"></div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
+                <div style="display: flex; justify-content: space-between; color: var(--text-secondary);"><span>Subtotal</span><span>$${store.cartSubtotal.toFixed(2)}</span></div>
+                <div style="display: flex; justify-content: space-between; color: var(--text-secondary);"><span>Shipping</span><span>${store.shippingFee === 0 ? 'FREE' : `$${store.shippingFee.toFixed(2)}`}</span></div>
+                <div style="display: flex; justify-content: space-between; color: var(--text-secondary);"><span>Sales Tax (8%)</span><span>$${store.cartTax.toFixed(2)}</span></div>
+                <div style="width: 100%; height: 1px; background: var(--border-color); margin: 0.4rem 0;"></div>
+                <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 800;"><span>Total Due</span><span style="color: var(--accent-cyan); font-family: var(--font-display);">$${store.cartTotal.toFixed(2)}</span></div>
+              </div>
+            </div>
+
+          </div>
+        `;
+      },
+
+      getShippingFormHTML() {
+        return `
+          <form onsubmit="checkoutView.submitShipping(event)">
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; text-transform: uppercase; margin-bottom: 1.5rem; color: #fff;">Shipping Information</h3>
+            <div class="input-group">
+              <label class="input-label">Full Name</label>
+              <input type="text" id="ship-name" class="form-input" placeholder="John Doe" value="${this.shipping.fullName}" required />
+              <span class="error-text" id="err-ship-name"></span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Email Address</label>
+              <input type="email" id="ship-email" class="form-input" placeholder="john@example.com" value="${this.shipping.email}" required />
+              <span class="error-text" id="err-ship-email"></span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Street Address</label>
+              <input type="text" id="ship-addr" class="form-input" placeholder="123 Cyber Way" value="${this.shipping.address}" required />
+              <span class="error-text" id="err-ship-addr"></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="input-group">
+                <label class="input-label">City</label>
+                <input type="text" id="ship-city" class="form-input" placeholder="Neo City" value="${this.shipping.city}" required />
+                <span class="error-text" id="err-ship-city"></span>
+              </div>
+              <div class="input-group">
+                <label class="input-label">ZIP Code</label>
+                <input type="text" id="ship-zip" class="form-input" placeholder="94016" value="${this.shipping.zipCode}" required />
+                <span class="error-text" id="err-ship-zip"></span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; height: 46px; margin-top: 1.5rem;">Continue to Payment</button>
+          </form>
+        `;
+      },
+
+      getPaymentFormHTML() {
+        return `
+          <form onsubmit="checkoutView.submitPayment(event)">
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; text-transform: uppercase; margin-bottom: 1.5rem; color: #fff;">Payment Details</h3>
+            <div class="input-group">
+              <label class="input-label">Cardholder Name</label>
+              <input type="text" id="pay-name" class="form-input" placeholder="JOHN DOE" value="${this.payment.cardName}" style="text-transform: uppercase;" required />
+              <span class="error-text" id="err-pay-name"></span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Card Number</label>
+              <input type="text" id="pay-num" class="form-input" placeholder="4111 2222 3333 4444" value="${this.payment.cardNumber}" oninput="checkoutView.formatCardNum(this)" required />
+              <span class="error-text" id="err-pay-num"></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="input-group">
+                <label class="input-label">Expiry Date</label>
+                <input type="text" id="pay-expiry" class="form-input" placeholder="MM/YY" value="${this.payment.cardExpiry}" oninput="checkoutView.formatExpiry(this)" required />
+                <span class="error-text" id="err-pay-expiry"></span>
+              </div>
+              <div class="input-group">
+                <label class="input-label">CVV</label>
+                <input type="password" id="pay-cvv" class="form-input" placeholder="•••" value="${this.payment.cardCvv}" oninput="checkoutView.formatCvv(this)" required />
+                <span class="error-text" id="err-pay-cvv"></span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+              <button type="button" onclick="checkoutView.goBack()" class="btn btn-secondary" style="flex-grow: 1;">Back</button>
+              <button type="submit" class="btn btn-primary" style="flex-grow: 2; height: 46px;">Complete Purchase</button>
+            </div>
+          </form>
+        `;
+      },
+
+      formatCardNum(inp) {
+        const clean = inp.value.replace(/\D/g, '').slice(0, 16);
+        const matches = clean.match(/\d{1,4}/g);
+        inp.value = matches ? matches.join(' ') : '';
+        this.payment.cardNumber = inp.value;
+      },
+      formatExpiry(inp) {
+        const clean = inp.value.replace(/\D/g, '').slice(0, 4);
+        if (clean.length > 2) {
+          inp.value = `${clean.slice(0, 2)}/${clean.slice(2)}`;
+        } else {
+          inp.value = clean;
+        }
+        this.payment.cardExpiry = inp.value;
+      },
+      formatCvv(inp) {
+        inp.value = inp.value.replace(/\D/g, '').slice(0, 3);
+        this.payment.cardCvv = inp.value;
+      },
+
+      submitShipping(e) {
+        e.preventDefault();
+        const nameVal = document.getElementById('ship-name').value;
+        const emailVal = document.getElementById('ship-email').value;
+        const addrVal = document.getElementById('ship-addr').value;
+        const cityVal = document.getElementById('ship-city').value;
+        const zipVal = document.getElementById('ship-zip').value;
+
+        // Simple validation checks
+        let valid = true;
+        
+        // Reset errors
+        document.querySelectorAll('.error-text').forEach(s => s.textContent = '');
+
+        if (!nameVal.trim()) {
+          document.getElementById('err-ship-name').textContent = 'Name is required';
+          valid = false;
+        }
+        if (!emailVal.includes('@') || emailVal.length < 5) {
+          document.getElementById('err-ship-email').textContent = 'Enter a valid email address';
+          valid = false;
+        }
+        if (!addrVal.trim()) {
+          document.getElementById('err-ship-addr').textContent = 'Address is required';
+          valid = false;
+        }
+        if (!cityVal.trim()) {
+          document.getElementById('err-ship-city').textContent = 'City is required';
+          valid = false;
+        }
+        if (zipVal.replace(/\D/g, '').length < 5) {
+          document.getElementById('err-ship-zip').textContent = 'ZIP must be 5-6 digits';
+          valid = false;
+        }
+
+        if (valid) {
+          this.shipping = { fullName: nameVal, email: emailVal, address: addrVal, city: cityVal, zipCode: zipVal };
+          this.step = 2;
+          this.render();
+        }
+      },
+
+      submitPayment(e) {
+        e.preventDefault();
+        const cardNameVal = document.getElementById('pay-name').value;
+        const cardNumVal = document.getElementById('pay-num').value;
+        const cardExpiryVal = document.getElementById('pay-expiry').value;
+        const cardCvvVal = document.getElementById('pay-cvv').value;
+
+        let valid = true;
+        document.querySelectorAll('.error-text').forEach(s => s.textContent = '');
+
+        if (!cardNameVal.trim()) {
+          document.getElementById('err-pay-name').textContent = 'Cardholder name is required';
+          valid = false;
+        }
+        if (cardNumVal.replace(/\s/g, '').length !== 16) {
+          document.getElementById('err-pay-num').textContent = 'Card number must be 16 digits';
+          valid = false;
+        }
+        if (cardExpiryVal.replace('/', '').length !== 4) {
+          document.getElementById('err-pay-expiry').textContent = 'MM/YY format required';
+          valid = false;
+        }
+        if (cardCvvVal.length !== 3) {
+          document.getElementById('err-pay-cvv').textContent = 'CVV must be 3 digits';
+          valid = false;
+        }
+
+        if (valid) {
+          this.payment = { cardName: cardNameVal, cardNumber: cardNumVal, cardExpiry: cardExpiryVal, cardCvv: cardCvvVal };
+          this.orderId = `NEXUS-${Math.floor(100000 + Math.random() * 900000)}`;
+          this.step = 3;
+          this.render();
+        }
+      },
+
+      goBack() {
+        this.step = 1;
+        this.render();
+      },
+
+      renderSuccess(container) {
+        container.innerHTML = `
+          <div class="animate-scale" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 3rem 2rem; text-align: center; max-width: 650px; margin: 0 auto;">
+            
+            <div style="display: inline-flex; justify-content: center; align-items: center; width: 80px; height: 80px; border-radius: 50%; background: rgba(0, 245, 245, 0.08); border: 2px solid var(--accent-cyan); margin-bottom: 1.5rem;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" style="stroke-dasharray: 50; stroke-dashoffset: 50; animation: checkmarkDraw 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;" />
+              </svg>
+            </div>
+
+            <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 0.5rem; color: #fff;">Order Completed!</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 440px; margin: 0 auto 2rem auto; line-height: 1.6;">
+              Thank you for shopping with NexusMarket. Your payment has processed successfully, and our fulfillment units are preparing your dispatch.
+            </p>
+
+            <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.5rem; text-align: left; margin-bottom: 2rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                <span>Confirmation details</span>
+                <span style="color: var(--accent-cyan); font-weight: 700;">${this.orderId}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+                <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Deliver to:</span><span style="color: #fff; font-weight: 600;">${this.shipping.fullName}</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Email copy to:</span><span style="color: #fff; font-weight: 600;">${this.shipping.email}</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Invoice Charged:</span><span style="color: var(--accent-cyan); font-weight: 700; font-family: var(--font-display);">$${store.cartTotal.toFixed(2)}</span></div>
+              </div>
+            </div>
+
+            <button onclick="checkoutView.finish()" class="btn btn-primary" style="padding: 0.8rem 2.5rem;">Return Home</button>
+          </div>
+        `;
+      },
+
+      finish() {
+        store.clearCart();
+        this.step = 1;
+        appRouter.navigate('home');
+      }
+    };
+
+    // 4E. Cart Drawer Control
+    const cartDrawer = {
+      open() {
+        document.getElementById('cart-drawer-wrapper').style.display = 'block';
+        this.render();
+      },
+      close() {
+        document.getElementById('cart-drawer-wrapper').style.display = 'none';
+      },
+      render() {
+        const list = document.getElementById('cart-drawer-items');
+        const footer = document.getElementById('cart-drawer-footer');
+        
+        if (store.cart.length > 0) {
+          list.innerHTML = store.cart.map(item => `
+            <div style="display: flex; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
+              <div style="width: 80px; height: 80px; border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-tertiary); flex-shrink: 0; border: 1px solid var(--border-color);">
+                <img src="${item.product.image}" alt="${item.product.name}" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                    <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; line-height: 1.2;">${item.product.name}</h4>
+                    <span style="font-size: 0.95rem; font-weight: 800; color: var(--accent-cyan); font-family: var(--font-display);">$${item.product.price}</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+                  <!-- Qty adjusts -->
+                  <div style="display: inline-flex; align-items: center; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-xs); height: 30px;">
+                    <button onclick="store.updateCartQty('${item.product.id}', ${item.quantity - 1})" style="background: none; border: none; color: var(--text-secondary); width: 26px; height: 100%; cursor: pointer;">−</button>
+                    <span style="width: 28px; text-align: center; font-size: 0.82rem; font-weight: 700; color: #fff;">${item.quantity}</span>
+                    <button onclick="store.updateCartQty('${item.product.id}', ${item.quantity + 1})" style="background: none; border: none; color: var(--text-secondary); width: 26px; height: 100%; cursor: pointer;">+</button>
+                  </div>
+                  <button onclick="store.removeFromCart('${item.product.id}')" style="background: none; border: none; color: var(--text-muted); cursor: pointer;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
+                </div>
+              </div>
+            </div>
+          `).join('');
+          
+          footer.style.display = 'block';
+          footer.innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--text-secondary);"><span>Subtotal</span><span style="color: #fff; font-weight: 600;">$${store.cartSubtotal.toFixed(2)}</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--text-secondary);"><span>Shipping</span><span style="color: ${store.shippingFee === 0 ? 'var(--accent-cyan)' : '#fff'}; font-weight: 600;">${store.shippingFee === 0 ? 'FREE' : `$${store.shippingFee.toFixed(2)}`}</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--text-secondary);"><span>Sales Tax (8%)</span><span style="color: #fff; font-weight: 600;">$${store.cartTax.toFixed(2)}</span></div>
+              <div style="width: 100%; height: 1px; background: var(--border-color); margin: 0.4rem 0;"></div>
+              <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 800;"><span>Total</span><span style="color: var(--accent-cyan); font-family: var(--font-display);">$${store.cartTotal.toFixed(2)}</span></div>
+            </div>
+            <button onclick="cartDrawer.goToCheckout()" class="btn btn-primary" style="width: 100%; height: 48px; font-size: 0.95rem;">Proceed to Checkout</button>
+          `;
+        } else {
+          list.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80%; text-align: center; margin-top: 5rem;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem;">Your Cart is Empty</h4>
+              <p style="font-size: 0.82rem; color: var(--text-secondary); max-width: 240px; margin-bottom: 1.5rem;">You haven't added any premium gadgets to your cart yet.</p>
+              <button onclick="cartDrawer.close(); appRouter.navigate('catalog');" class="btn btn-outline-cyan" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Go to Catalog</button>
+            </div>
+          `;
+          footer.style.display = 'none';
+        }
+      },
+      goToCheckout() {
+        this.close();
+        appRouter.navigate('checkout');
+      }
+    };
+
+    // 5. GLOBAL INTERACTIVE EVENTS
+
+    function handleQuickAddCard(e, prodId) {
+      e.stopPropagation();
+      store.addToCart(prodId, 1);
+      alert('Added item to cart!');
+    }
+
+    function handleSearchInput(e) {
+      store.searchQuery = e.target.value;
+      // Sync both input fields (desktop & mobile)
+      document.getElementById('search-input').value = store.searchQuery;
+      document.getElementById('mobile-search-input').value = store.searchQuery;
+      
+      const hash = window.location.hash.slice(1);
+      if (hash !== 'catalog') {
+        appRouter.navigate('catalog');
+      } else {
+        catalogView.render();
+      }
+    }
+
+    function handlePriceSlider(e) {
+      store.maxPrice = parseInt(e.target.value);
+      catalogView.render();
+    }
+
+    function handleSortSelect(e) {
+      store.sortBy = e.target.value;
+      catalogView.render();
+    }
+
+    function resetAllFilters() {
+      store.searchQuery = '';
+      store.activeCategory = 'all';
+      store.maxPrice = 500;
+      store.minRating = 0;
+      store.sortBy = 'default';
+      
+      document.getElementById('search-input').value = '';
+      document.getElementById('mobile-search-input').value = '';
+      
+      catalogView.render();
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-nav-menu');
+      const hamburger = document.getElementById('hamburger-icon');
+      if (menu.style.display === 'none') {
+        menu.style.display = 'flex';
+        hamburger.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+      } else {
+        menu.style.display = 'none';
+        hamburger.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+      }
+    }
+
+    let newsletterSubscribed = false;
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const container = document.getElementById('newsletter-form-container');
+      const email = document.getElementById('newsletter-email').value;
+      if (email.trim() && email.includes('@')) {
+        container.innerHTML = `
+          <div style="background: rgba(0, 245, 245, 0.08); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 0.6rem 1rem; border-radius: var(--radius-xs); font-size: 0.82rem; font-weight: 700;">
+            Subscription Confirmed! Welcome aboard.
+          </div>
+        `;
+      }
+    }
+
+    // Shrink header on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 40) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Handle screen sizes for navbar elements
+    function handleResize() {
+      const desktopSearch = document.getElementById('desktop-search-container');
+      const desktopNav = document.getElementById('desktop-nav-links');
+      if (window.innerWidth >= 768) {
+        desktopSearch.style.display = 'block';
+        desktopNav.style.display = 'flex';
+        document.getElementById('mobile-toggle').style.display = 'none';
+        document.getElementById('mobile-nav-menu').style.display = 'none';
+      } else {
+        desktopSearch.style.display = 'none';
+        desktopNav.style.display = 'none';
+        document.getElementById('mobile-toggle').style.display = 'flex';
+      }
+    }
+    window.addEventListener('resize', handleResize);
+
+    // Initial Setup Page Run
+    document.addEventListener('DOMContentLoaded', () => {
+      handleResize();
+      store.updateBadge();
+      appRouter.resolve();
+    });
+  </script>
+</body>
+</html>
